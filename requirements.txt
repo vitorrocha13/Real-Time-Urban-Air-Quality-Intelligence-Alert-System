@@ -1,10 +1,25 @@
-pathway>=0.8.0
+# GreenPulse AI — Real-Time Urban Air Quality Intelligence & Alert System
+# Core Dependencies
+
+# Streaming Engine
+pathway>=0.14.0
+
+# ML / AI Inference
 scikit-learn>=1.3.0
 numpy>=1.24.0
-fastapi>=0.104.0
-uvicorn>=0.24.0
+pandas>=2.0.0
 joblib>=1.3.0
+
+# API Layer
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.4.0
+
+# Dashboard
 streamlit>=1.28.0
 plotly>=5.17.0
-pandas>=2.1.0
 requests>=2.31.0
+
+# Utilities
+python-dotenv>=1.0.0
+loguru>=0.7.2
