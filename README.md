@@ -7,6 +7,9 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-dashboard-FF4B4B.svg)](https://streamlit.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+<img width="1299" height="898" alt="image" src="https://github.com/user-attachments/assets/02989818-dcfd-4aa3-9eb9-260b8bd58968" />
+<img width="1732" height="964" alt="image" src="https://github.com/user-attachments/assets/4f8c8d8f-b2b4-4c3f-b5f7-ec1e1864acf6" />
+
 ---
 
 ## 🏙️ Problem Statement
