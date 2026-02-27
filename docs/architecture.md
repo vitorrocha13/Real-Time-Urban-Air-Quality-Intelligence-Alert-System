@@ -1,0 +1,1 @@
+# Architecture\n\nSensors -> Pathway Streaming -> AI -> API -> Dashboard\n

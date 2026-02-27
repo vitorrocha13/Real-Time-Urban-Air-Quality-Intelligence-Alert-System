@@ -1,0 +1,1 @@
+# Setup\n\npip install -r requirements.txt\npython scripts/run_all.py\n
